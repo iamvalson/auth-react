@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { useAuth } from "../hooks/useAuth";
+import LoadingPage from "../components/LoadingPage";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const Dashboard = () => {
   };
 
   if (!user) {
-    return null;
+    return <LoadingPage message="Loading Profile..." />;
   }
 
   return (

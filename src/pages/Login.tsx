@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import ErrorMessage from "../components/ErrorMessage";
+import LoadingPage from "../components/LoadingPage";
 import { useAuth } from "../hooks/useAuth";
 import { type LoginFormData, loginSchema } from "../schemas/auth.schema";
 import { loginUser } from "../services/auth.service";
@@ -62,6 +63,10 @@ const Login = () => {
     setValue("password", "emilyspass", { shouldValidate: true });
     toast.info("Demo credentials filled!");
   };
+
+  if (loginMutation.isPending) {
+    return <LoadingPage message="Signing you in..." />;
+  }
 
   return (
     <main className="min-h-screen flex items-center justify-center px-4 py-12 bg-zinc-50 selection:bg-zinc-900 selection:text-white">
